@@ -1,0 +1,7 @@
+services:
+  db-tests-app: 
+    build:
+      context: . # build from dockerfile
+      target: development
+    environment:
+      - NODE_ENV=development
