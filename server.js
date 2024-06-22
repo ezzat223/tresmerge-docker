@@ -48,7 +48,7 @@ const PORT = process.env.PORT || 4000;
 app.get("/", async (req, res) => {
   // hostname => container id
   console.log(`Traffic from ${os.hostname}`);
-  res.send(`<h1>Hello from Redis!</h1>`);
+  res.send(`<h1>Hello Tresmerge from DockerHub!</h1>`);
 });
 
 app.listen(PORT, () => {

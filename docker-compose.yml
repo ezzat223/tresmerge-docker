@@ -6,9 +6,20 @@ services:
     image: ezzat22/tresmerge-docker
     build: .
     # No PORT Forwarding, as you're already using Nginx => PORT 80
+
+    # for docker swarm
+    deploy:
+      replicas: 4 # number of servers or services
+      update_config:
+        parallelism: 2 # number of containers to be updated at a time, so 2 will be working and 2 being updated
+        delay: 10s     # time to wait between updates
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
     depends_on:
       # - redis
-      - postgres 
+      - postgres
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -39,7 +50,6 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: example
-
 
 volumes:
   postgres-db:
